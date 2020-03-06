@@ -1,24 +1,22 @@
 import java.io.*;
-
-class Node {
-	String words;
+import java.util.*;
+class Node{
+	String data;
 	Node next;
 }
-// Main class
-public class Unordered_List{
-	String line="";
+
+public class Unordered_List {
 	Node head;
-	
-	//To insert the string in the list.
-	private void insert(String words)
+	String takeInput="";
+
+	private void insert(String data)
 	{
 		Node node = new Node();
-		node.words = words;
+		node.data = data;
 		node.next = null;
 		if(head == null)
 		{
 			head = node;
-
 		}
 		else
 		{
@@ -30,47 +28,86 @@ public class Unordered_List{
 			traverse.next = node;
 		}
 	}
-	
-	//To Display the list.
-	private void show()
-	{
-		Node traverse = head;
-		while(traverse.next != null)
-		{
-			System.out.println(traverse.words);
-			traverse = traverse.next;
-		}
-	}
-	public static void main(String[] args) throws IOException
-	{	
-		Unordered_List list = new Unordered_List();
-		FileReader file = new FileReader("demoFile.txt");
-		BufferedReader br = new BufferedReader(file);
-		String line = br.readLine();
-		String[] l = line.split(" ");
-		try {
 
-			while(line != null)
+	private void delete(String data) {
+		try {
+			if(head.data.equals(data))
 			{
-				for (String s : l) 
-				{		
-					list.insert(s);
+				head=head.next;
+			}
+			else 
+			{
+				Node traverse=head;
+				Node n1;
+				while(true)
+				{
+					Node n2;
+					n2=traverse;
+					traverse=traverse.next;
+					if(traverse.data.equals(data))
+					{
+						n1=traverse.next;
+						n2.next=n1.next;
+						break;
+					}
 				}
-				line = br.readLine();
-				l = line.split(" ");
 
 			}
-
 		}catch(NullPointerException e)
 		{
 			System.out.println();
 		}
+	}
 
-		System.out.println("linked List value");
-		list.insert("Hey");
-		list.insert("I am new here");
-		list.insert("How are you all?");
+	private void show()
+	{
+		Node traverse = head;
+		while(traverse != null)
+		{
+			System.out.println(traverse.data);
+			traverse=traverse.next;
+		}
+	}
+
+	public static void main(String[] args)throws Exception 
+	{
+
+		Unordered_List list = new Unordered_List();
+		Scanner sc = new Scanner(System.in);
+		File f2 =new File("xyz.txt");
+		f2.createNewFile();
+		FileReader fr = new FileReader(f2);
+		BufferedReader br = new BufferedReader(fr);
+		String line = br.readLine();
+		String[] l=line.split(" ");
+		try
+		{
+			while(line!=null)
+			{
+				for (String string : l) 
+				{
+					list.insert(string);
+				}
+				line=br.readLine();
+				l=line.split(" ");
+			}
+		}catch(NullPointerException e)
+		{
+			System.out.println();
+		}
+		System.out.println("linkedlist values");
+		list.show();
+		System.out.println("Enter the string to add into the file");
+		list.takeInput=sc.nextLine();
+		list.insert(list.takeInput);
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++");
+		list.show();
+		System.out.println("Enter the string to delete into the file");
+		list.takeInput=sc.nextLine();
+		list.delete(list.takeInput);
+		System.out.println("+++++++++++++++++++++++++++++++++++++++++");
 		list.show();
 		br.close();
 	}
+
 }
