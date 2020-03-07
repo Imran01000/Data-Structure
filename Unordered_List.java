@@ -11,6 +11,22 @@ public class Unordered_List {
 	Node traverse;
 	String takeInput="";
 	Node n1;
+	boolean checkEmpty;
+	
+	private boolean isEmpty()
+	{
+		if(head == null)
+		{
+			System.out.println("Linkedlist is empty");	
+			checkEmpty = true;
+		}
+		else
+		{
+			System.out.println("linked list is not empty");
+			checkEmpty = false;
+		}
+		return checkEmpty;
+	}
 	private void insert(String data)
 	{
 		Node node = new Node();
@@ -132,6 +148,8 @@ public class Unordered_List {
 		System.out.println("Enter the string to be search");
 		list.takeInput = sc.nextLine();
 		list.search(list.takeInput);
+		System.out.println("++++++++++++++++++++++++++++++++++++++++++");
+		list.isEmpty();
 		br.close();
 		sc.close();
 	}
