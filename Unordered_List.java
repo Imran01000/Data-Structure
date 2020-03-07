@@ -11,8 +11,10 @@ public class Unordered_List {
 	Node traverse;
 	String takeInput="";
 	Node n1;
+	int count=0;
+	static int listSize;
 	boolean checkEmpty;
-	
+
 	private boolean isEmpty()
 	{
 		if(head == null)
@@ -68,6 +70,11 @@ public class Unordered_List {
 						n2.next=n1.next;
 						break;
 					}
+					else if(traverse.next == null)
+					{
+						System.out.println("Can't delete string is not there!!");
+					}
+
 				}
 
 			}
@@ -87,22 +94,40 @@ public class Unordered_List {
 		}
 
 	}
+	private int size()
+	{
+		try {
+			Node traverse = head;
+			while(traverse.next != null)
+			{
+				count++;
+			}
+		}catch(NullPointerException e)
+		{
+			System.out.println();
+		}
+		return count;
+	}
 
 	private void search(String data)
 	{
 		Node traverse=head;
 		try {
-				while(true)
+			while(true)
+			{
+
+				if(traverse.data.equals(data))
 				{
-			
-					if(traverse.data.equals(data))
-					{
-						System.out.println("already present that string");
-						break;
-					}
-					traverse=traverse.next;
-					
+					System.out.println("already present that string");
+					break;
 				}
+				else if(traverse.next == null)
+				{
+					System.out.println("Can't delete cause that string is not present");
+				}
+				traverse=traverse.next;
+
+			}
 		}catch(NullPointerException e)
 		{
 			System.out.println();
@@ -150,6 +175,9 @@ public class Unordered_List {
 		list.search(list.takeInput);
 		System.out.println("++++++++++++++++++++++++++++++++++++++++++");
 		list.isEmpty();
+		listSize = list.size();
+		System.out.println("The size of linkedlist is : "+listSize);
+		System.out.println("++++++++++++++++++++++++++++++++++++++++++");
 		br.close();
 		sc.close();
 	}
