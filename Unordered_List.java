@@ -13,6 +13,7 @@ public class Unordered_List {
 	Node n1;
 	int count=0;
 	static int listSize;
+	static int takeIndex;
 	boolean checkEmpty;
 
 	private boolean isEmpty()
@@ -48,6 +49,23 @@ public class Unordered_List {
 			traverse.next = node;
 		}
 	}
+	private int index(String data)
+	{
+		traverse = head;
+		while(!traverse.data.equals(data))
+		{
+			count++;
+			traverse = traverse.next;
+			if(traverse.data.equals(data))
+				break;
+			else if(traverse.next == null)
+			{
+				break;
+			}
+		}
+		return count;
+	}
+	
 
 	private void delete(String data) {
 		try {
@@ -175,9 +193,11 @@ public class Unordered_List {
 		list.search(list.takeInput);
 		System.out.println("++++++++++++++++++++++++++++++++++++++++++");
 		list.isEmpty();
-		listSize = list.size();
-		System.out.println("The size of linkedlist is : "+listSize);
 		System.out.println("++++++++++++++++++++++++++++++++++++++++++");
+		System.out.println("Enter the string to get it position");
+		list.takeInput = sc.nextLine();
+		takeIndex = list.index(list.takeInput);
+		System.out.println("postion is : "+takeIndex);
 		br.close();
 		sc.close();
 	}
