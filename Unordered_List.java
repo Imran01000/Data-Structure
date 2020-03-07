@@ -7,8 +7,10 @@ class Node{
 
 public class Unordered_List {
 	Node head;
+	Node n2;
+	Node traverse;
 	String takeInput="";
-
+	Node n1;
 	private void insert(String data)
 	{
 		Node node = new Node();
@@ -67,11 +69,31 @@ public class Unordered_List {
 			System.out.println(traverse.data);
 			traverse=traverse.next;
 		}
+
 	}
 
+	private void search(String data)
+	{
+		Node traverse=head;
+		try {
+				while(true)
+				{
+			
+					if(traverse.data.equals(data))
+					{
+						System.out.println("already present that string");
+						break;
+					}
+					traverse=traverse.next;
+					
+				}
+		}catch(NullPointerException e)
+		{
+			System.out.println();
+		}
+	}
 	public static void main(String[] args)throws Exception 
 	{
-
 		Unordered_List list = new Unordered_List();
 		Scanner sc = new Scanner(System.in);
 		File f2 =new File("xyz.txt");
@@ -107,7 +129,10 @@ public class Unordered_List {
 		list.delete(list.takeInput);
 		System.out.println("+++++++++++++++++++++++++++++++++++++++++");
 		list.show();
+		System.out.println("Enter the string to be search");
+		list.takeInput = sc.nextLine();
+		list.search(list.takeInput);
 		br.close();
+		sc.close();
 	}
-
 }
