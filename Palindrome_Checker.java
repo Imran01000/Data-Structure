@@ -21,11 +21,28 @@ public class Palindrome_Checker {
 		}
 		return checkEmpty;
 	}
-
+	private static void addFront(char data)
+	{
+		if((front1 == 0 && rear1 == size) || (front2 == size && rear2 == 0))
+		{
+			System.out.println("The deque is overflow");
+		}
+		else
+		{
+			palindrome[rear1] = data;
+			rear1 = rear1 + 1;
+		}
+	}
+	private static void display()
+	{
+		for (char c : palindrome) {
+			System.out.println(c);
+		}
+	}
 	public static void main(String[] args)
 	{	
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter the size of dequeue");
+		System.out.println("Enter the size of deque");
 		size = sc.nextInt();
 		palindrome = new char[size];
 		front2 = size;
@@ -33,6 +50,8 @@ public class Palindrome_Checker {
 		System.out.println("Is deque is empty?");
 		takeValue= isEmpty();
 		System.out.println(takeValue);
+		addFront('c');
+		display();
 		
 	}
 }
