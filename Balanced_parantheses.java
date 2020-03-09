@@ -35,6 +35,22 @@ public class Balanced_parantheses
 			stack[top] = data;
 		}
 	}
+	
+	//TO REMOVE THE ELEMENT FROM THE STACK.
+	private int pop()
+	{
+		if(isStackEmpty())
+		{
+			System.out.println("Stack is underflow");
+		}
+		else
+		{
+			data = stack[top];
+			stack[top] = 0;
+			top--;
+		}
+		return data;
+	}
 	//MAIN METHOD
 	public static void main(String[] args)
 	{
