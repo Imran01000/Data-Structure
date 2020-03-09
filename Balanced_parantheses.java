@@ -2,15 +2,16 @@ import java.util.Scanner;
 
 public class Balanced_parantheses
 {
-	static int size = 0;
-	static int top = 0;
-	int[] stack = new int[size];
+	static int size;
+	static int top = -1;
+	int[] stack;
 	static boolean checkEmpty;
 	static boolean check;
-	
+
+	//TO CHECK WHEATHER THE STACK IS EMPTY OR NOT.
 	private boolean isStackEmpty()
 	{
-		if(top == 0)
+		if(top == -1)
 		{
 			checkEmpty = true;
 		}
@@ -21,20 +22,49 @@ public class Balanced_parantheses
 		return checkEmpty;
 	}
 
-
-
+	//TO PUSH THE ELEMENT TO THE STACK.
+	private void push(char data) 
+	{
+		if(top == size)
+		{
+			System.out.println("Stack is overflow!!!");
+		}
+		else
+		{
+			top++;
+			stack[top] = data;
+		}
+	}
+	//MAIN METHOD
 	public static void main(String[] args)
 	{
 		Balanced_parantheses bp = new Balanced_parantheses();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the size of your stack");
 		size = sc.nextInt();
-		check = bp.isStackEmpty();
-		System.out.println("Is stack empty?");
-		System.out.println(check);
-		sc.close();
-		
+		stack = new char[size];
+		System.out.println("Enter you choice");
+		System.out.printf("1.push\n2.pop\n3.peek\n4.size\n5.display\n6.To exit");
+		choice = sc.nextInt();
+		while(true)
+		{
+			switch(choice)
+			{
+			case 1:
+				System.out.println("Enter the character");
+				data = sc.next().charAt(0);
+				bp.push(data);
+				break;
+
+			case 2:
+				value = bp.pop();
+				System.out.println("Deleted element is : "+value);
+				break;
+
+			}
+			br.close();
+			sc.close()
+
+		}
 
 	}
-
-}
