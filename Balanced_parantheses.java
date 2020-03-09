@@ -35,7 +35,7 @@ public class Balanced_parantheses
 			stack[top] = data;
 		}
 	}
-	
+
 	//TO REMOVE THE ELEMENT FROM THE STACK.
 	private int pop()
 	{
@@ -51,6 +51,21 @@ public class Balanced_parantheses
 		}
 		return data;
 	}
+
+	//TO TAKE THE TOP ELEMENT OF STACK.
+	private int peek() 
+	{
+		return stack[top];
+	}
+
+	//TO DISPLAY THE STACK.
+	private void display()
+	{
+		for (char c : stack) {
+			System.out.println(c);
+		}
+	}
+
 	//MAIN METHOD
 	public static void main(String[] args)
 	{
