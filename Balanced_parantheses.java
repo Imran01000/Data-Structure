@@ -1,13 +1,18 @@
-import java.util.Scanner;
+iimport java.util.Scanner;
 
 public class Balanced_parantheses
 {
+	//VARIABLES.
 	static int size;
 	static int top = -1;
-	int[] stack;
+	static char[] stack;
 	static boolean checkEmpty;
 	static boolean check;
-
+	static int choice;
+	static char data;
+	static int value;
+	static int itr=0;
+	
 	//TO CHECK WHEATHER THE STACK IS EMPTY OR NOT.
 	private boolean isStackEmpty()
 	{
@@ -21,7 +26,7 @@ public class Balanced_parantheses
 		}
 		return checkEmpty;
 	}
-
+	 
 	//TO PUSH THE ELEMENT TO THE STACK.
 	private void push(char data) 
 	{
@@ -35,7 +40,7 @@ public class Balanced_parantheses
 			stack[top] = data;
 		}
 	}
-
+	
 	//TO REMOVE THE ELEMENT FROM THE STACK.
 	private int pop()
 	{
@@ -51,13 +56,18 @@ public class Balanced_parantheses
 		}
 		return data;
 	}
-
 	//TO TAKE THE TOP ELEMENT OF STACK.
 	private int peek() 
 	{
 		return stack[top];
 	}
-
+	
+	//TO RETURN TOTAL SIZE OF STACK.
+	private int totalSize()
+	{
+		return size;
+	}
+	
 	//TO DISPLAY THE STACK.
 	private void display()
 	{
@@ -66,7 +76,7 @@ public class Balanced_parantheses
 		}
 	}
 
-	//MAIN METHOD
+	//MAIN METHOD.
 	public static void main(String[] args)
 	{
 		Balanced_parantheses bp = new Balanced_parantheses();
@@ -86,16 +96,36 @@ public class Balanced_parantheses
 				data = sc.next().charAt(0);
 				bp.push(data);
 				break;
-
+				
 			case 2:
 				value = bp.pop();
 				System.out.println("Deleted element is : "+value);
 				break;
-
+				
+			case 3:
+				value = bp.peek();
+				System.out.println("the top element is : "+value);
+				break;
+				
+			case 4:
+				value = bp.totalSize();
+				System.out.println("Total size of stack : "+value);
+				break;
+				
+			case 5:
+				System.out.println("++++++++++++++++++++");
+				bp.display();
+				break;
+			case 6:
+				System.exit(1);
+				
 			}
-			br.close();
-			sc.close()
-
+			System.out.printf("1.push\n2.pop\n3.peek\n4.size\n5.display\n6.To exit");
+			choice = sc.nextInt();
+			itr++;
+			
 		}
-
+		
 	}
+	
+}
