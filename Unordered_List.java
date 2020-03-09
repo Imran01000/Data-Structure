@@ -1,21 +1,24 @@
 import java.io.*;
 import java.util.*;
-class Node{
-	String data;
+//NODE CLASS>
+class Node<T>{
+	T data;
 	Node next;
 }
 
-public class Unordered_List {
+//MAIN CLASS
+public class Unordered_List<T> {
 	Node head;
-	Node n2;
+	Node previousNode;
 	Node traverse;
-	String takeInput="";
-	Node n1;
+	T takeInput ;
+	Node currentNode;
 	int count=0;
 	static int listSize;
 	static int takeIndex;
 	boolean checkEmpty;
 
+	//TO CHECK WHEATHER THE LINKEDLIST IS EMPTY OR NOT.
 	private boolean isEmpty()
 	{
 		if(head == null)
@@ -30,7 +33,9 @@ public class Unordered_List {
 		}
 		return checkEmpty;
 	}
-	private void insert(String data)
+
+	//TO ADD THE ELEMENT TO THE LINKEDLIST.
+	private void append(T data)
 	{
 		Node node = new Node();
 		node.data = data;
@@ -49,7 +54,31 @@ public class Unordered_List {
 			traverse.next = node;
 		}
 	}
-	private int index(String data)
+
+	//TO ADD THE ELEMENT THE ELEMENT IN THE SPECIFIC POSITION.
+	private void insertAt(int position , T data)
+	{
+		Node node  = new Node();
+		node.data = data;
+		node.next = null;
+
+		traverse = head;
+		while(true)
+		{
+			currentNode = traverse;
+			traverse=traverse.next;
+			count++;
+			if(count == position)
+			{
+				previousNode = traverse.next;
+				traverse.next = node;
+				node.next = traverse.next;
+			}
+		}
+
+		//TO GET THE ELEMENT INDEX.
+	}
+	private int index(T data)
 	{
 		traverse = head;
 		while(!traverse.data.equals(data))
@@ -65,9 +94,9 @@ public class Unordered_List {
 		}
 		return count;
 	}
-	
 
-	private void delete(String data) {
+	//TO DELETE THE SPECIFIC ELEMENT.
+	private void delete(T data) {
 		try {
 			if(head.data.equals(data))
 			{
@@ -80,12 +109,12 @@ public class Unordered_List {
 				while(true)
 				{
 					Node n2;
-					n2=traverse;
-					traverse=traverse.next;
+					previousNode = traverse;
+					traverse = traverse.next;
 					if(traverse.data.equals(data))
 					{
-						n1=traverse.next;
-						n2.next=n1.next;
+						currentNode = traverse.next;
+						previousNode.next = currentNode.next;
 						break;
 					}
 					else if(traverse.next == null)
@@ -102,6 +131,7 @@ public class Unordered_List {
 		}
 	}
 
+	//TO DISPLAY THE ELEMENTS.
 	private void show()
 	{
 		Node traverse = head;
@@ -112,6 +142,8 @@ public class Unordered_List {
 		}
 
 	}
+
+	//TO SEARCH THE PARTICULAR ELEMENT.
 	private int size()
 	{
 		try {
@@ -127,7 +159,8 @@ public class Unordered_List {
 		return count;
 	}
 
-	private void search(String data)
+	//TO SEARCH THE PARTICULAR ELEMENT.
+	private void search(T data)
 	{
 		Node traverse=head;
 		try {
@@ -136,13 +169,14 @@ public class Unordered_List {
 
 				if(traverse.data.equals(data))
 				{
-					System.out.println("already present that string");
+					System.out.println("already present that string!!");
 					break;
 				}
 				else if(traverse.next == null)
 				{
-					System.out.println("Can't delete cause that string is not present");
+					System.out.println("String is not there!!");
 				}
+
 				traverse=traverse.next;
 
 			}
@@ -151,9 +185,11 @@ public class Unordered_List {
 			System.out.println();
 		}
 	}
+
+	//MAIN METHOD.
 	public static void main(String[] args)throws Exception 
 	{
-		Unordered_List list = new Unordered_List();
+		Unordered_List<String> list = new Unordered_List<String>();
 		Scanner sc = new Scanner(System.in);
 		File f2 =new File("xyz.txt");
 		f2.createNewFile();
@@ -167,7 +203,7 @@ public class Unordered_List {
 			{
 				for (String string : l) 
 				{
-					list.insert(string);
+					list.append(string);
 				}
 				line=br.readLine();
 				l=line.split(" ");
@@ -180,7 +216,7 @@ public class Unordered_List {
 		list.show();
 		System.out.println("Enter the string to add into the file");
 		list.takeInput=sc.nextLine();
-		list.insert(list.takeInput);
+		list.append(list.takeInput);
 		System.out.println("+++++++++++++++++++++++++++++++++++++++++");
 		list.show();
 		System.out.println("Enter the string to delete into the file");
@@ -197,7 +233,8 @@ public class Unordered_List {
 		System.out.println("Enter the string to get it position");
 		list.takeInput = sc.nextLine();
 		takeIndex = list.index(list.takeInput);
-		System.out.println("postion is : "+takeIndex);
+		System.out.println("position is : "+takeIndex);
+		System.out.println();
 		br.close();
 		sc.close();
 	}
